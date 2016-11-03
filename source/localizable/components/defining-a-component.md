@@ -68,7 +68,10 @@ export default Ember.Route.extend({
   }
 });
 ```
-Note that the properties passed to the component stay in sync (technically known as being "bound"). That is, if the value of componentProperty changes in the component, outerProperty will be updated to reflect that change. The reverse is true as well.
+Note that the properties passed to the component stay in sync (technically known as being "bound").
+For example, if the value of `title` in the `blog-post` component described above changes inside the component,
+the value of `post.title` in the containing template will be updated to reflect that change.
+The reverse is true as well.
 
 Each component, under the hood, is backed by an element. By default
 Ember will use a `<div>` element to contain your component's template.

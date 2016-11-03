@@ -12,13 +12,13 @@ This is the example we used:
 {{blog-post title=post.title body=post.body}}
 ```
 
-For simplicity we've omitted the `{{#each}}` loop around the component that yields individual `post`s.
+For simplicity we've omitted the `{{#each}}` loop around the component that yields individual posts.
 Passing parameters to the component like this is useful if we want to describe how the content of the component should be customized just in terms of data available in the parent template.
 Sometimes, however,
-you may wish the developer using the component to be able to provide portions of custom HTML or handlebars content that should be inserted within it.
+you may wish to allow the developer using the component to provide portions of custom HTML or handlebars content to be inserted within the component's template.
 In this case an alternative **block form** of usage is available that describes how the component should wrap the custom content.
 
-The block form follows the same pattern as Ember's internal helpers discussed in [Templates - Conditionals](../../templates/conditionals).
+The block form syntax follows the same pattern as Ember's internal helpers discussed in [Templates - Conditionals](../../templates/conditionals).
 In the parent template add a `#` character to the beginning of the component name prior to the content to be wrapped and add a closing tag after it.
 (See the Handlebars documentation on [block expressions](http://handlebarsjs.com/#block-expressions) for more.)
 
