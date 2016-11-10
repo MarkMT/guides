@@ -41,19 +41,26 @@ export default Ember.Component.extend({
 See the list of event names at the end of this page. Any event can be defined
 as an event handler in your component.
 
-## Sending Actions
+## Sending Event Data
 
-In some cases your component needs to define event handlers, perhaps to support
-various draggable behaviors. For example, a component may need to send an `id`
-when it receives a drop event:
+In some cases your component's event handler may need to make use of the [data object](https://developer.mozilla.org/en-US/docs/Web/API/Event) associated with the event,
+perhaps to support various draggable behaviors.
+For example, in a component designed to have other elements dragged onto it,
+we may need to send an `id` extracted from the drop event out to the javascript context of its parent template when that event is received in order to identify the dragged element.
+
+To facilitate this, when we insert the component into its containing template,
+we will pass the component an external action that will be used within the component to send the `id`:
 
 ```hbs
 {{drop-target action=(action "didDrop")}}
 ```
 
-You can define the component's event handlers to manage the drop event.
-And if you need to, you may also stop events from bubbling, by using
-`return false;`.
+Passing actions to components like this is discussed in detail in the guide [Triggering Changes with Events](https://guides.emberjs.com/v2.9.0/components/triggering-changes-with-actions/). Within the component the external action `didDrop` is now accessible as the `action` property and this action will take our `id` parameter as an argument.
+
+To send the `id`, we will call that action from the component's `drop` event handler.
+To access the event object within the handler so that we can extract the `id`,
+we simply include the event in the handler's function signature.
+If you need to, you may also stop events from bubbling, by using `return false;`.
 
 ```app/components/drop-target.js
 import Ember from 'ember';
@@ -72,57 +79,6 @@ export default Ember.Component.extend({
   }
 });
 ```
-
-In the above component, `didDrop` is the `action` passed in. This action is
-called from the `drop` event handler and passes one argument to the action -
-the `id` value found through the `drop` event object.
-
-
-Another way to preserve native event behaviors and use an action, is to
-assign a (closure) action to an inline event handler. Consider the
-template below which includes an `onclick` handler on a `button` element:
-
-```hbs
-<button onclick={{action 'signUp'}}>Sign Up</button>
-```
-
-The `signUp` action is simply a function defined on the `actions` hash
-of a component. Since the action is assigned to an inline handler, the
-function definition can define the event object as its first parameter.
-
-```js
-actions: {
-  signUp: function(event){ 
-  	// Only when assigning the action to an inline handler, the event object
-    // is passed to the action as the first parameter.
-  }
-}
-```
-
-The normal behavior for a function defined in `actions` does not receive the
-browser event as an argument. So, the function definition for the action cannot
-define an event parameter. The following example demonstrates the
-default behavior using an action.
-
-```hbs
-<button {{action 'signUp'}}>Sign Up</button>
-```
-
-```js
-actions: {
-  signUp: function(){
-    // No event object is passed to the action.
-  }
-}
-```
-
-To utilize an `event` object as a function parameter: 
-
-- Define the event handler in the component (which is designed to receive the
-  browser event object).
-- Or, assign an action to an inline event handler in the template (which
-  creates a closure action and does receive the event object as an argument).
-
 
 ## Event Names
 
