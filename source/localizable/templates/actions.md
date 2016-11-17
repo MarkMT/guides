@@ -35,19 +35,6 @@ export default Ember.Component.extend({
 The use of the `action` helper in the way shown here is referred to as being in the *element space*.
 We will discuss an alternative usage later on this page under [Closure Actions](/templates/actions/#toc_closure-actions).
 
-## Specifying the Type of Event
-
-By default, when the `action` helper is used in the element space,
-it listens for click events and triggers the action when the user clicks on the element.
-However, you can specify an alternative event by using the `on` option.
-
-```handlebars
-<p>
-  <button {{action "select" post on="mouseUp"}}>✓</button>
-  {{post.title}}
-</p>
-```
-
 You should use the <code>camelCased</code> event names, so two-word names like `keypress`
 become `keyPress`.
 
@@ -76,6 +63,19 @@ export default Ember.Component.extend({
     }
   }
 });
+```
+
+## Specifying the Type of Event
+
+By default, when the `action` helper is used in the element space,
+it listens for click events and triggers the action when the user clicks on the element.
+However, you can specify an alternative event by using the `on` option.
+
+```handlebars
+<p>
+  <button {{action "select" post on="mouseUp"}}>✓</button>
+  {{post.title}}
+</p>
 ```
 
 ## Allowing Modifier Keys
