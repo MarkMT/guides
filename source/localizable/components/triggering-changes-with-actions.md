@@ -255,14 +255,14 @@ For example, if we want to use the button to send a message of type `"info"`:
 {{button-with-confirmation text="Click to send your message." onConfirm=(action "sendMessage" "info")}}
 ```
 
-Within `button-with-confirmation`, the code does not change.
+Within `button-with-confirmation`, the code in the `submitConfirm` action does not change.
 It will still invoke `onConfirm` without explicit arguments:
 
 ```app/components/button-with-confirmation.js
 const promise = this.get('onConfirm')();
 ```
 However the expression `(action "sendMessage" "info")` used in passing the action to the component creates a closure,
-binding the parameter we've provided to the function specified.
+i.e. an object that binds the parameter we've provided to the function specified.
 So now when the action is invoked, that parameter will automatically be passed as its argument, effectively calling `sendMessage("info")`,
 despite the argument not appearing in the calling code.
 
