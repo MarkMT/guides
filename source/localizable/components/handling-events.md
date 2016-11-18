@@ -55,7 +55,8 @@ we will pass the component an external action that will be used within the compo
 {{drop-target action=(action "didDrop")}}
 ```
 
-Passing actions to components like this is discussed in detail in the guide [Triggering Changes with Events](https://guides.emberjs.com/v2.9.0/components/triggering-changes-with-actions/). Within the component the external action `didDrop` is now accessible as the `action` property and this action will take our `id` parameter as an argument.
+Passing actions to components like this is discussed in detail in the guide [Triggering Changes with Events](https://guides.emberjs.com/v2.9.0/components/triggering-changes-with-actions/). 
+Within the component the external action `didDrop` is now accessible as the `action` property and this action is designed to take our `id` parameter as an argument.
 
 To send the `id`, we will call that action from the component's `drop` event handler.
 To access the event object within the handler so that we can extract the `id`,
