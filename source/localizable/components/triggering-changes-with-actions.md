@@ -318,7 +318,7 @@ we can now use the component in `send-message` to wrap a text input element whos
 
 When the user enters their message into the input field,
 the message text will now be available to the component as `confirmValue`.
-Then, once they click the "Ok" button, the `submitConfirm` action will be triggered, calling `onConfirm` with the provided `confirmValue`,
+Then, once they click the "OK" button, the `submitConfirm` action will be triggered, calling `onConfirm` with the provided `confirmValue`,
 thus invoking the `sendMessage` action in `send-message` with both the `messageType` and `messageText` arguments.
 
 ## Invoking Actions Directly on Component Collaborators
