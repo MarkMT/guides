@@ -214,8 +214,8 @@ export default Ember.Component.extend({
     },
 
     submitConfirm() {
-      //call onConfirm with the value of the input field as an argument
-      const promise = this.get('onConfirm')();
+      // call onConfirm with the value of the input field as an argument
+      let promise = this.get('onConfirm')();
       promise.then(() => {
         this.set('confirmShown', false);
       });
